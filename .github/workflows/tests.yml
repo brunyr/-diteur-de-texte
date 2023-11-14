@@ -3,12 +3,33 @@ name : nom_custom_workflow
 on: push
 
 jobs:
-  testsss:
+  Tests:
     runs-on: ubuntu-latest
     steps:
       - name: deplacement
         run: actions/checkout@v3
-      - name: mise en place Java
+      - name: mise en place Java-17
         uses : actions/setup-java@v1
+        with:
+          java-version: 17
       - name: lancement des tests
-        uses : mvn test
+        run : mvn test
+
+  JavaDoc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deplacement
+        run: actions/checkout@v3
+      - name: mise en place Java-17
+        uses : actions/setup-java@v1
+        with:
+          java-version: 17
+      - name: création de la javadoc
+        run : mvn javadoc::javadoc
+      - name: publication de la javadoc
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/site/apidocs
+          permissions:
+            contents: write
