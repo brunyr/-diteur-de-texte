@@ -4,6 +4,10 @@ import fr.iut.editeur.document.Document;
 
 public class CommandeRemplacer extends CommandeDocument {
 
+    /** Cette commande permet de remplacer une partie du texte du document
+     * @param document le document sur lequel on travaille
+     * @param parameters les paramètres de la commande
+     */
     public CommandeRemplacer(Document document, String[] parameters) {
         super(document, parameters);
     }
