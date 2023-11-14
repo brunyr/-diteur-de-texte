@@ -1,0 +1,14 @@
+name : nom_custom_workflow
+
+on: push
+
+jobs:
+  testsss:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deplacement
+        run: actions/checkout@v3
+      - name: mise en place Java
+        uses : actions/setup-java@v1
+      - name: lancement des tests
+        uses : mvn test
